@@ -1,4 +1,3 @@
-require "pry"
 require "./config/environment"
 require "./app/models/user"
 class ApplicationController < Sinatra::Base
@@ -41,7 +40,6 @@ class ApplicationController < Sinatra::Base
 	end
 	
 	get "/success" do
-	  binding.pry
 		if logged_in?
 			erb :success
 		else
