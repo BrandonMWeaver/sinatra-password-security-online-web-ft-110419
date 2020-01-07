@@ -1,33 +1,33 @@
 require "./config/environment"
 require "./app/models/user"
 class ApplicationController < Sinatra::Base
-
+  
 	configure do
 		set :views, "app/views"
 		enable :sessions
 		set :session_secret, "password_security"
 	end
-
+	
 	get "/" do
 		erb :index
 	end
-
+	
 	get "/signup" do
 		erb :signup
 	end
-
+	
 	post "/signup" do
-		#your code here!
+	  
 	end
-
+	
 	get "/login" do
 		erb :login
 	end
-
+	
 	post "/login" do
 		#your code here!
 	end
-
+	
 	get "/success" do
 		if logged_in?
 			erb :success
@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
 			redirect "/login"
 		end
 	end
-
+	
 	get "/failure" do
 		erb :failure
 	end
@@ -44,15 +44,15 @@ class ApplicationController < Sinatra::Base
 		session.clear
 		redirect "/"
 	end
-
+	
 	helpers do
 		def logged_in?
 			!!session[:id]
 		end
-
+		
 		def current_user
 			User.find(session[:id])
 		end
 	end
-
+	
 end
